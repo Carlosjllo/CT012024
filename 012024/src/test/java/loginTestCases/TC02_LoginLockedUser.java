@@ -33,7 +33,7 @@ public class TC02_LoginLockedUser {
 	
 	@AfterTest
 	public void closeDriver() {
-		WrapClass.takeScreenshot(driver, "TC02_LoginLockedUser");
+		//WrapClass.takeScreenshot(driver, "TC02_LoginLockedUser");
 		driver.quit();
 	}
 }

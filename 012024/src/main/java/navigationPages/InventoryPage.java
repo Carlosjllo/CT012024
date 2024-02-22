@@ -12,6 +12,7 @@ public class InventoryPage {
 	//Web Elements
 	@FindBy(id = "add-to-cart-sauce-labs-backpack") private WebElement addBtn;
 	@FindBy(id = "remove-sauce-labs-backpack") private WebElement removeBtn;
+	@FindBy(id = "shopping_cart_container") private WebElement shoppingCartBtn;
 	
 	//Constructor
 	public InventoryPage(WebDriver driver) {
@@ -22,5 +23,10 @@ public class InventoryPage {
 	public boolean verifyRemoveButton() {
 		WrapClass.click(addBtn);
 		return WrapClass.vefifyElementDisplayed(removeBtn);
+	}
+	
+	public void addAProductAndCheckout() {
+		WrapClass.click(addBtn);
+		WrapClass.click(shoppingCartBtn);
 	}
 }

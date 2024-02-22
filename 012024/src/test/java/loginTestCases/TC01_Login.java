@@ -30,7 +30,7 @@ public class TC01_Login {
 	
 	@AfterTest
 	public void closeDriver() {
-		WrapClass.takeScreenshot(driver, "TC01_Login");
+		//WrapClass.takeScreenshot(driver, "TC01_Login");
 		driver.quit();
 	}
 }

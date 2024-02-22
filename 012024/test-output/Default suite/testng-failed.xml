@@ -3,12 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test name="Default test(failed)">
     <classes>
-      <class name="loginTestCases.TC02_LoginLockedUser">
+      <class name="e2eTestCases.TC04_CompleteAPurchase">
         <methods>
-          <include name="TC01"/>
           <include name="startWebDriver"/>
+          <include name="TC04"/>
+          <include name="closeDriver"/>
         </methods>
-      </class> <!-- loginTestCases.TC02_LoginLockedUser -->
+      </class> <!-- e2eTestCases.TC04_CompleteAPurchase -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
