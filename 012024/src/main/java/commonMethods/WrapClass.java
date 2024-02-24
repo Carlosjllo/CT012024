@@ -1,8 +1,16 @@
 package commonMethods;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -41,6 +49,45 @@ public class WrapClass {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	public static String getJsonValue(String jsonFile, String jsonKey) {
+		try {
+			FileInputStream inputstream = new FileInputStream(GlobalVariables.EXT_DATA + jsonFile + ".json"); // Ruta del archivo
+			JSONObject jsonObject = new JSONObject(new JSONTokener(inputstream));
+			
+			//Leer datos
+			String jsonValue = jsonObject.getJSONObject(jsonFile).getString(jsonKey);
+			return jsonValue;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} 
+	}
+	
+	public static String getCellData(String excelName, int row, int column) {
+		//Leer archivo excel
+		try {
+			FileInputStream fis = new FileInputStream(GlobalVariables.EXT_DATA + excelName + ".xlsx");
+			
+			//Construir xlsx como objeto de Java
+			XSSFWorkbook wb = new XSSFWorkbook(fis);
+			Sheet sheet = wb.getSheetAt(0);
+			Row rowObj = sheet.getRow(row);
+			Cell cell = rowObj.getCell(column);
+			
+			String value = cell.getStringCellValue();
+			return value;
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (IOException e){
+			e.printStackTrace();
+			return null;
 		}
 	}
 }
